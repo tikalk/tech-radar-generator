@@ -1,6 +1,6 @@
 {
   "name": "tech-radar-generator",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A library that generates an interactive radar, inspired by http://thoughtworks.com/radar/",
   "main": "index.js",
   "bin": "./bin/tech-radar-generator",
