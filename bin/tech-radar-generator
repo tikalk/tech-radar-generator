@@ -1,37 +1,38 @@
 #!/usr/bin/env node
-const fs = require('fs')
-const path = require('path')
+const fs = require("fs");
+const path = require("path");
 
-const tree = require('tree-node-cli')
+const tree = require("tree-node-cli");
 
-const argv = require('yargs')
-  .option('dev', {
-    alias: 'd',
-    describe: 'build in development mode',
-    boolean: 'development'
+const argv = require("yargs")
+  .option("dev", {
+    alias: "d",
+    describe: "build in development mode",
+    boolean: "development",
   })
-  .command('$0 <input> <output>', 'Builds a tech radar', yargs => {
+  .command("$0 <input> <output>", "Builds a tech radar", (yargs) => {
     yargs
-      .positional('input', {
-        describe: 'the path to a valid JSON config input',
-        type: 'string'
+      .positional("input", {
+        describe: "the path to a valid JSON config input",
+        type: "string",
       })
-      .positional('output', {
-        describe: 'the path to output the generated dist',
-        type: 'string'
-      })
+      .positional("output", {
+        describe: "the path to output the generated dist",
+        type: "string",
+      });
   })
-  .help()
-  .argv
+  .help().argv;
 
-const input = path.resolve(argv.input)
-const data = JSON.parse(fs.readFileSync(input, 'utf8'))
+const input = path.resolve(argv.input);
+const data = JSON.parse(fs.readFileSync(input, "utf8"));
 
-require('..')(data, argv.output, { mode: argv.dev ? 'development' : 'production' })
-  .then(dist => {
-    console.log(tree(dist))
+require("..")(data, argv.output, {
+  mode: argv.dev ? "development" : "production",
+})
+  .then((dist) => {
+    console.log(tree(dist));
   })
-  .catch(err => {
-    console.error(err)
-    process.exit(1)
-  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
