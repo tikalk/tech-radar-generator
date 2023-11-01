@@ -1,45 +1,45 @@
-'use strict'
+"use strict";
 
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssnanoPlugin = require('cssnano-webpack-plugin')
-const postcssPresetEnv = require('postcss-preset-env')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssnanoPlugin = require("cssnano-webpack-plugin");
+const postcssPresetEnv = require("postcss-preset-env");
 
-const r = (f) => path.resolve(__dirname, f)
+const r = (f) => path.resolve(__dirname, f);
 
-let main = [r('src/site.js')]
-let common = [r('./src/common.js')]
+let main = [r("src/site.js")];
+let common = [r("./src/common.js")];
 
 let plugins = [
-  new MiniCssExtractPlugin({ filename: '[name].[fullhash].css' }),
+  new MiniCssExtractPlugin({ filename: "[name].[fullhash].css" }),
   new HtmlWebpackPlugin({
-    template: r('./src/index.html'),
-    chunks: ['main'],
-    inject: 'body'
+    template: r("./src/index.html"),
+    chunks: ["main"],
+    inject: "body",
   }),
   new HtmlWebpackPlugin({
-    template: r('./src/error.html'),
-    chunks: ['common'],
-    inject: 'body',
-    filename: 'error.html'
-  })
-]
+    template: r("./src/error.html"),
+    chunks: ["common"],
+    inject: "body",
+    filename: "error.html",
+  }),
+];
 
 module.exports = {
   context: process.cwd(),
-  mode: 'production',
+  mode: "production",
   entry: {
     main: main,
-    common: common
+    common: common,
   },
   output: {
-    filename: '[name].[fullhash].js',
+    filename: "[name].[fullhash].js",
     clean: true,
-    path: path.resolve(__dirname, './dist')
+    path: path.resolve(__dirname, "./dist"),
   },
   performance: {
-    hints: false
+    hints: false,
   },
 
   module: {
@@ -48,11 +48,11 @@ module.exports = {
         test: /\.(?:js)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: require.resolve("babel-loader"),
           options: {
-            presets: [['@babel/preset-env', { targets: 'defaults' }]]
-          }
-        }
+            presets: [["@babel/preset-env", { targets: "defaults" }]],
+          },
+        },
       },
       {
         test: /\.s[ac]ss$/i,
@@ -60,74 +60,74 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
-            options: { importLoaders: 1 }
+            loader: require.resolve("css-loader"),
+            options: { importLoaders: 1 },
           },
           {
-            loader: 'sass-loader',
+            loader: require.resolve("sass-loader"),
             options: {
               sassOptions: {
-                outputStyle: 'compressed'
-              }
-            }
+                outputStyle: "compressed",
+              },
+            },
           },
           {
-            loader: 'postcss-loader',
+            loader: require.resolve("postcss-loader"),
             options: {
               postcssOptions: {
-                plugins: [postcssPresetEnv({ browsers: 'last 2 versions' })]
-              }
-            }
-          }
-        ]
+                plugins: [postcssPresetEnv({ browsers: "last 2 versions" })],
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(png|ico|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: require.resolve("file-loader"),
             options: {
-              name: 'images/[name].[ext]',
-              context: r('./src/images')
-            }
-          }
-        ]
+              name: "images/[name].[ext]",
+              context: r("./src/images"),
+            },
+          },
+        ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: [
           {
-            loader: 'file-loader', // TODO- move to asset loader
+            loader: require.resolve("file-loader"), // TODO- move to asset loader
             options: {
-              name: 'images/[name].[ext]'
-            }
-          }
-        ]
+              name: "images/[name].[ext]",
+            },
+          },
+        ],
       },
       {
-        test: require.resolve('jquery'),
-        loader: 'expose-loader',
+        test: require.resolve("jquery"),
+        loader: "expose-loader",
         options: {
-          exposes: ['$', 'jQuery']
-        }
+          exposes: ["$", "jQuery"],
+        },
       },
       {
-        test: r('./src/data'),
-        loader: 'val-loader',
+        test: r("./src/data"),
+        loader: require.resolve("val-loader"),
         options: {
-          data: require('./example-data.json')
-        }
-      }
-    ]
+          data: require("./example-data.json"),
+        },
+      },
+    ],
   },
 
   plugins: plugins,
   optimization: {
-    minimizer: [new CssnanoPlugin()]
+    minimizer: [new CssnanoPlugin()],
   },
 
   devServer: {
-    host: '0.0.0.0',
-    port: 9001
-  }
-}
+    host: "0.0.0.0",
+    port: 9001,
+  },
+};
