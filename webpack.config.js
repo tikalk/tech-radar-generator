@@ -3,7 +3,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssnanoPlugin = require("cssnano-webpack-plugin");
 const postcssPresetEnv = require("postcss-preset-env");
 
 const r = (f) => path.resolve(__dirname, f);
@@ -122,9 +121,6 @@ module.exports = {
   },
 
   plugins: plugins,
-  optimization: {
-    minimizer: [new CssnanoPlugin()],
-  },
 
   devServer: {
     host: "0.0.0.0",
