@@ -3,7 +3,9 @@
   "version": "0.5.6",
   "description": "A library that generates an interactive radar, inspired by http://thoughtworks.com/radar/",
   "main": "index.js",
-  "bin": "./bin/tech-radar-generator",
+  "bin": {
+    "tikal-tech-radar-generator": "./bin/tech-radar-generator"
+  },
   "scripts": {
     "dev": "webpack-dev-server",
     "test": "nyc jasmine",
