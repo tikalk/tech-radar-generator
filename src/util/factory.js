@@ -52,7 +52,7 @@ function plotRadar () {
   })
 
   const size = (window.innerHeight - 133) < 620 ? 620 : window.innerHeight - 133;
-  const width = SIZE || size;
+  const width = RADAR_WIDTH || size;
 
   new GraphingRadar(width, radar).init().plot()
 }

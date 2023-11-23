@@ -538,7 +538,7 @@ const Radar = function (size, radar) {
     var blipScale = 3 / 4
     var blipTranslate = (1 - blipScale) / blipScale
 
-    svg.style('left', moveLeft + 'px').style('right', moveRight + 'px')
+    svg.style('left', 0 + 'px').style('right', 0 + 'px')
     d3.select('.quadrant-group-' + order)
       .transition()
       .duration(ANIMATION_DURATION)
