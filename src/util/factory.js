@@ -51,9 +51,10 @@ function plotRadar () {
     }
   })
 
-  var size = (window.innerHeight - 133) < 620 ? 620 : window.innerHeight - 133
+  const size = (window.innerHeight - 133) < 620 ? 620 : window.innerHeight - 133;
+  const width = SIZE || size;
 
-  new GraphingRadar(size, radar).init().plot()
+  new GraphingRadar(width, radar).init().plot()
 }
 
 const SafePlotRadar = function () {

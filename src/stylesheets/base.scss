@@ -159,7 +159,7 @@ body {
 @media screen {
 
   #radar {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     position: relative;
 
@@ -345,5 +345,11 @@ body {
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  #radar {
+    width: 90%;
   }
 }
