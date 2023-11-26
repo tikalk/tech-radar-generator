@@ -51,10 +51,14 @@ function plotRadar () {
     }
   })
 
-  const size = (window.innerHeight - 133) < 620 ? 620 : window.innerHeight - 133;
-  const width = parseInt(RADAR_WIDTH) || size;
 
-  new GraphingRadar(width, radar).init().plot()
+  const windowWidth = parseInt(RADAR_WIDTH);
+  const gap = 133;
+  const measure = windowWidth || window.innerHeight;
+  const width = measure - gap;
+  const size = width < 490 ? 620 : width > 1000 ? 1000 : width;
+
+  new GraphingRadar(size, radar).init().plot()
 }
 
 const SafePlotRadar = function () {

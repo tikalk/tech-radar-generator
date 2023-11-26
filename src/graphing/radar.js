@@ -12,6 +12,7 @@ const QueryParams = require('../util/queryParamProcessor')
 
 const MIN_BLIP_WIDTH = 12
 const ANIMATION_DURATION = 1000
+const IS_MOBILE = parseInt(RADAR_WIDTH) < 768 ;
 
 const Radar = function (size, radar) {
   var svg, radarElement, quadrantButtons, buttonsGroup, header, alternativeDiv
@@ -521,7 +522,7 @@ const Radar = function (size, radar) {
     d3.selectAll('.quadrant-table.' + order).classed('selected', true)
     d3.selectAll('.blip-item-description').classed('expanded', false)
 
-    var scale = 2
+    var scale = IS_MOBILE ? 1 : 2;
 
     var adjustX = Math.sin(toRadian(startAngle)) - Math.cos(toRadian(startAngle))
     var adjustY = Math.cos(toRadian(startAngle)) + Math.sin(toRadian(startAngle))
