@@ -1,6 +1,6 @@
 {
   "name": "tikal-tech-radar-generator",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "description": "A library that generates an interactive radar, inspired by http://thoughtworks.com/radar/",
   "main": "index.js",
   "bin": {
