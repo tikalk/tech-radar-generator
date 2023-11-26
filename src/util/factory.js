@@ -56,7 +56,7 @@ function plotRadar () {
   const gap = 133;
   const measure = windowWidth || window.innerHeight;
   const width = measure - gap;
-  const size = width < 490 ? 620 : width > 1000 ? 1000 : width;
+  const size = width ;
 
   new GraphingRadar(size, radar).init().plot()
 }
