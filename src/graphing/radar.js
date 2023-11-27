@@ -142,8 +142,12 @@ const Radar = function (size, radar) {
   function calculateBlipCoordinates (blip, chance, minRadius, maxRadius, startAngle) {
     var adjustX = Math.sin(toRadian(startAngle)) - Math.cos(toRadian(startAngle))
     var adjustY = -Math.cos(toRadian(startAngle)) - Math.sin(toRadian(startAngle))
-
-    var radius = chance.floating({ min: minRadius + blip.width / 2, max: maxRadius - blip.width / 2 })
+    var min = minRadius + blip.width / 2;
+    var max = maxRadius - blip.width / 2;
+   
+    min = min > max ? max-1 : min ;
+    
+    var radius = chance.floating({ min: min, max: max });
     var angleDelta = Math.asin(blip.width / 2 / radius) * 180 / Math.PI
     angleDelta = angleDelta > 45 ? 45 : angleDelta
     var angle = toRadian(chance.integer({ min: angleDelta, max: 90 - angleDelta }))
@@ -522,7 +526,7 @@ const Radar = function (size, radar) {
     d3.selectAll('.quadrant-table.' + order).classed('selected', true)
     d3.selectAll('.blip-item-description').classed('expanded', false)
 
-    var scale = IS_MOBILE ? 0.8 : 2;
+    var scale = IS_MOBILE ? 0.6 : 1;
 
     var adjustX = Math.sin(toRadian(startAngle)) - Math.cos(toRadian(startAngle))
     var adjustY = Math.cos(toRadian(startAngle)) + Math.sin(toRadian(startAngle))
