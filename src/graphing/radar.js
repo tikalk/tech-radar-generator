@@ -576,7 +576,7 @@ const Radar = function (size, radar) {
    
     var scale = 1.8; 
 
-    if(IS_MOBILE) scale = 1.1;
+    if(IS_MOBILE) scale = 1;
     if(IS_TABLET) scale = 1;
 
     var adjustX = Math.sin(toRadian(startAngle)) - Math.cos(toRadian(startAngle))
@@ -594,8 +594,8 @@ const Radar = function (size, radar) {
     var blipScale = 3 / 4
     var blipTranslate = (1 - blipScale) / blipScale
 
-
-    svg.style('left', 0 + 'px').style('right', 0 + 'px')
+ 
+    svg.style('left', Math.ceil(moveLeft) + 'px').style('right', Math.ceil(moveRight) + 'px')
     d3.select('.quadrant-group-' + order)
       .transition()
       .duration(ANIMATION_DURATION)
