@@ -12,9 +12,12 @@ const QueryParams = require('../util/queryParamProcessor')
 
 const MIN_BLIP_WIDTH = 12
 const ANIMATION_DURATION = 1000
-const IS_MOBILE = parseInt(RADAR_WIDTH) < 768 ;
+const IS_MOBILE = parseInt(RADAR_WIDTH) < 576 ;
+const IS_TABLET = parseInt(RADAR_WIDTH) >= 576 && parseInt(RADAR_WIDTH) < 960 ;
 
 const Radar = function (size, radar) {
+  
+  size = IS_MOBILE || IS_TABLET  ? size + 110 :size;
   var svg, radarElement, quadrantButtons, buttonsGroup, header, alternativeDiv
 
   var tip = d3.tip().attr('class', 'd3-tip').html(function (text) {
@@ -334,8 +337,8 @@ const Radar = function (size, radar) {
     var container = d3.select('svg').append('g')
       .attr('class', 'legend legend' + '-' + order)
 
-    var x = 10
-    var y = 10
+    var x = 20
+    var y = 20
 
     if (order === 'first') {
       x = 4 * size / 5
@@ -355,6 +358,50 @@ const Radar = function (size, radar) {
     if (order === 'fourth') {
       x = 4 * size / 5
       y = 4 * size / 5
+    }
+
+    if(IS_TABLET){
+      if (order === 'first') {
+        x = (2 * size / 5)-25;
+        y = 20+(0 * size / 5)
+      }
+  
+      if (order === 'second') {
+        x = 2 * size / 5 + 30;
+        y = 0 * size / 5 + 10;
+      }
+  
+      if (order === 'third') {
+        x = 2 * size / 5 - 20;
+        y = 2 * size / 5 - 10; 
+      }
+  
+      if (order === 'fourth') {
+        x = 1 * size / 5
+        y = 3 * size / 5
+      }
+    }
+
+    if(IS_MOBILE){
+      if (order === 'first') {
+        x = 0 * size / 5 +10;
+        y = 3 * size / 5 +10;
+      }
+  
+      if (order === 'second') {
+        x = 2 * size / 5 + 40;
+        y = 3 * size / 5 + 10;
+      }
+  
+      if (order === 'third') {
+        x = 2 * size / 5 + 40;
+        y = 3 * size / 5 + 10; 
+      }
+  
+      if (order === 'fourth') {
+        x = 0 * size / 5 +10;
+        y = 3 * size / 5 +10;
+      }
     }
 
     d3.select('.legend')
@@ -526,7 +573,11 @@ const Radar = function (size, radar) {
     d3.selectAll('.quadrant-table.' + order).classed('selected', true)
     d3.selectAll('.blip-item-description').classed('expanded', false)
 
-    var scale = IS_MOBILE ? 0.6 : 1;
+   
+    var scale = 1.8; 
+
+    if(IS_MOBILE) scale = 1.1;
+    if(IS_TABLET) scale = 1;
 
     var adjustX = Math.sin(toRadian(startAngle)) - Math.cos(toRadian(startAngle))
     var adjustY = Math.cos(toRadian(startAngle)) + Math.sin(toRadian(startAngle))
@@ -542,6 +593,7 @@ const Radar = function (size, radar) {
 
     var blipScale = 3 / 4
     var blipTranslate = (1 - blipScale) / blipScale
+
 
     svg.style('left', 0 + 'px').style('right', 0 + 'px')
     d3.select('.quadrant-group-' + order)
@@ -625,7 +677,8 @@ const Radar = function (size, radar) {
     plotAlternativeRadars(alternatives, currentSheet)
 
     plotQuadrantButtons(quadrants, header)
-
+    
+  
     radarElement.style('height', size + 14 + 'px')
     svg = radarElement.append('svg').call(tip)
     svg.attr('id', 'radar-plot').attr('width', size).attr('height', size + 14)

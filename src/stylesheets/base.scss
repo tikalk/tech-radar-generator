@@ -348,8 +348,16 @@ body {
   }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 570px) {
   #radar {
-    width: 90%;
+    width: 98%;
+    margin-left:2%;
+  }
+
+  header {
+    margin-right: 0 ;
+    .button {
+      padding: 4px 2px;
+    }
   }
 }
