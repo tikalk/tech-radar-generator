@@ -684,9 +684,9 @@ const Radar = function (size, radar) {
     plotQuadrantButtons(quadrants, header)
     
   
-    radarElement.style('height', size + 14 + 'px')
+    radarElement.style('height', size + 140 + 'px')
     svg = radarElement.append('svg').call(tip)
-    svg.attr('id', 'radar-plot').attr('width', size).attr('height', size + 14)
+    svg.attr('id', 'radar-plot').attr('width', size).attr('height', size + 140)
 
     _.each(quadrants, function (quadrant) {
       var quadrantGroup = plotQuadrant(rings, quadrant)

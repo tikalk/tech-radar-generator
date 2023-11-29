@@ -56,8 +56,6 @@ function plotRadar () {
   const gap = 133;
   const measure = windowWidth || window.innerHeight;
   const width = measure - gap;
-
-  console.log(measure,width)
   const size = width > 620 ? 620 : width ;
 
 
