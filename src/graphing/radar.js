@@ -17,7 +17,7 @@ const IS_TABLET = parseInt(RADAR_WIDTH) >= 576 && parseInt(RADAR_WIDTH) < 960 ;
 
 const Radar = function (size, radar) {
   
-  size = IS_MOBILE || IS_TABLET  ? size + 110 :size;
+  size = IS_MOBILE   ? size + 110 :size;
   var svg, radarElement, quadrantButtons, buttonsGroup, header, alternativeDiv
 
   var tip = d3.tip().attr('class', 'd3-tip').html(function (text) {
@@ -362,23 +362,23 @@ const Radar = function (size, radar) {
 
     if(IS_TABLET){
       if (order === 'first') {
-        x = 0 * size / 5 + 15
-        y = 3 * size / 5 - 25 
+        x = 0 * size / 5 + 25
+        y = 3 * size / 5 +10
       }
   
       if (order === 'second') {
-        x = 4 * size / 5 
-        y = 3 * size / 5 - 20
+        x = 4 * size / 5 -15
+        y = 3 * size / 5 + 10
       }
   
       if (order === 'third') {
-        x = 4 * size / 5 
-        y = 3 * size / 5 - 20
+        x = 4 * size / 5 - 15
+        y = 3 * size / 5 + 10
       }
   
       if (order === 'fourth') {
-        x = 0 * size / 5 + 15
-        y = 3 * size / 5 - 25 
+        x = 0 * size / 5 + 25
+        y = 3 * size / 5 + 10 
       }
     }
 
@@ -389,12 +389,12 @@ const Radar = function (size, radar) {
       }
   
       if (order === 'second') {
-        x = 2 * size / 5 + 40;
+        x = 4 * size / 5 - 40;
         y = 3 * size / 5 + 10;
       }
   
       if (order === 'third') {
-        x = 2 * size / 5 + 40;
+        x = 4 * size / 5 - 40;
         y = 3 * size / 5 + 10; 
       }
   
@@ -594,8 +594,13 @@ const Radar = function (size, radar) {
     var blipScale = 3 / 4
     var blipTranslate = (1 - blipScale) / blipScale
 
- 
-    svg.style('left', Math.ceil(moveLeft) + 'px').style('right', Math.ceil(moveRight) + 'px')
+    if(IS_MOBILE || IS_TABLET){
+      svg.style('left', 0 + 'px').style('right', 0 + 'px')
+    }
+    else{
+      svg.style('left', Math.ceil(moveLeft) + 'px').style('right', Math.ceil(moveRight) + 'px')
+    }
+    
     d3.select('.quadrant-group-' + order)
       .transition()
       .duration(ANIMATION_DURATION)
