@@ -244,7 +244,7 @@ body {
           font-weight: bold;
           text-transform: uppercase;
           fill: $black;
-          font-size: 7px;
+          font-size: 10px;
         }
       }
     }
@@ -352,6 +352,12 @@ body {
   #radar {
     width: 98%;
     margin-left:2%;
+
+    svg#radar-plot{
+      text.line-text {
+          font-size: 7px;
+      }
+    }
   }
 
   header {
@@ -360,4 +366,6 @@ body {
       padding: 4px 2px;
     }
   }
+
+ 
 }

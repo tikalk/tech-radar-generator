@@ -341,44 +341,44 @@ const Radar = function (size, radar) {
     var y = 20
 
     if (order === 'first') {
-      x = 4 * size / 5
-      y = 1 * size / 5
+      x = 0 * size / 5 + 25
+      y = 5 * size / 5 - 15
     }
 
     if (order === 'second') {
-      x = 1 * size / 5 - 15
-      y = 1 * size / 5 - 20
+      x = 4 * size / 5 
+      y = 5 * size / 5 - 15
     }
 
     if (order === 'third') {
-      x = 1 * size / 5 - 15
-      y = 4 * size / 5 + 15
+      x = 4 * size / 5 
+      y = 5 * size / 5 - 15
     }
 
     if (order === 'fourth') {
-      x = 4 * size / 5
-      y = 4 * size / 5
+      x = 0 * size / 5 + 25
+      y = 5 * size / 5 - 15
     }
 
     if(IS_TABLET){
       if (order === 'first') {
-        x = (2 * size / 5)-25;
-        y = 20+(0 * size / 5)
+        x = 0 * size / 5 + 15
+        y = 3 * size / 5 - 25 
       }
   
       if (order === 'second') {
-        x = 2 * size / 5 + 30;
-        y = 0 * size / 5 + 10;
+        x = 4 * size / 5 
+        y = 3 * size / 5 - 20
       }
   
       if (order === 'third') {
-        x = 2 * size / 5 - 20;
-        y = 2 * size / 5 - 10; 
+        x = 4 * size / 5 
+        y = 3 * size / 5 - 20
       }
   
       if (order === 'fourth') {
-        x = 1 * size / 5
-        y = 3 * size / 5
+        x = 0 * size / 5 + 15
+        y = 3 * size / 5 - 25 
       }
     }
 
@@ -583,7 +583,7 @@ const Radar = function (size, radar) {
     var adjustY = Math.cos(toRadian(startAngle)) + Math.sin(toRadian(startAngle))
 
     var translateX = (-1 * (1 + adjustX) * size / 2 * (scale - 1)) + (-adjustX * (1 - scale / 2) * size)
-    var translateY = (-1 * (1 - adjustY) * (size / 2 - 7) * (scale - 1)) - ((1 - adjustY) / 2 * (1 - scale / 2) * size)
+    var translateY = (-1 * (1 - adjustY) * (size / 2 - 7) * (scale - 1)) - ((1 - adjustY) / 2 * (1 - scale / 2) * size) + 6
 
     var translateXAll = (1 - adjustX) / 2 * size * scale / 2 + ((1 - adjustX) / 2 * (1 - scale / 2) * size)
     var translateYAll = (1 + adjustY) / 2 * size * scale / 2
